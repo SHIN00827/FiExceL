@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiExceL株式会社 - 広島県三原市のビジネスコンサルティング</title>
+    <style>
+        :root {
+            --primary-color: #1a75ff;
+            --secondary-color: #0047b3;
+            --accent-color: #e6f0ff;
+            --dark-color: #333333;
+            --light-color: #f5f5f5;
+            --text-color: #444444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #ffffff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 75px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        
+        .hero .btn {
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .services {
+            background-color: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background-color: var(--primary-color);
+            transition: height 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card:hover::before {
+            height: 100%;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .counter-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/counter-bg.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .counters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .counter-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .counter-box p {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact {
+            background-color: var(--accent-color);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(26, 117, 255, 0.3);
+            outline: none;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info strong {
+            display: inline-block;
+            width: 100px;
+        }
+        
+        .map-container {
+            margin-top: 40px;
+            height: 300px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 992px) {
+            .service-card {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                background-color: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 0;
+                margin: 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            
+            nav.active ul {
+                max-height: 300px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px;
+            }
+            
+            .hero {
+                height: 60vh;
+                margin-top: 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: 50vh;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Fi<span>ExceL</span></div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>ビジネスの可能性を最大化する</h1>
+            <p>FiExceL株式会社は、コンサルティングと営業代行で貴社のビジネス成長をサポートします。</p>
+            <a href="#contact" class="btn">お問い合わせ</a>
+        </div>
+    </section>
+    
+    <section id="services" class="services">
+        <div class="container">
+            <h2>サービス内容</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>営業代行</h3>
+                    <p>お客様のビジネスに合わせた営業戦略の立案から実行まで、専門チームがトータルサポート。新規顧客開拓や既存顧客へのアプローチを効率的に行います。</p>
+                </div>
+                <div class="service-card">
+                    <h3>コンサルティング</h3>
+                    <p>経営課題の分析から解決策の提案まで、ビジネスの成長をサポート。業績向上のための戦略立案や組織改革などをご提案します。</p>
+                </div>
+                <div class="service-card">
+                    <h3>Webサイト制作</h3>
+                    <p>ビジネスの価値を最大化するWebサイトの企画・制作・運営を提供。ユーザー体験を重視したデザインで、集客力のあるサイト構築をサポートします。</p>
+                </div>
+                <div class="service-card">
+                    <h3>コールセンター業務</h3>
+                    <p>顧客対応の効率化とサービス品質向上のためのコールセンター業務を提供。お客様のニーズに応じたカスタマイズが可能です。</p>
+                </div>
+                <div class="service-card">
+                    <h3>広告代理業</h3>
+                    <p>効果的な広告戦略の立案から実施まで一貫したサービスを提供。デジタルマーケティングを活用した最適な広告展開をサポートします。</p>
+                </div>
+                <div class="service-card">
+                    <h3>商品企画・OEM</h3>
+                    <p>市場調査から製品開発、製造まで、オリジナル商品の企画・開発をサポート。OEMやプライベートブランド商品の展開をお手伝いします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <h2>会社概要</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>FiExceL株式会社について</h3>
+                    <p>FiExceL株式会社は、2022年4月に設立された広島県三原市を拠点とするビジネスコンサルティング企業です。「Fi（ファイナンス）」と「Excel（卓越する）」を組み合わせた社名が示す通り、ビジネスの財務面と運営面での卓越性を追求しています。</p>
+                    <p>代表取締役の向井優真を中心に、多様な専門知識を持つチームが、お客様のビジネス課題解決と成長戦略の実現をサポートします。営業代行、コンサルティング、Webサイト制作など、幅広いサービスを提供し、お客様のビジネス成功に貢献いたします。</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/office-image.jpg" alt="FiExceL オフィスイメージ">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="counter-section">
+        <div class="container">
+            <div class="counters">
+                <div class="counter-box">
+                    <h3 class="counter" data-target="50">0</h3>
+                    <p>クライアント数</p>
+                </div>
+                <div class="counter-box">
+                    <h3 class="counter" data-target="100">0</h3>
+                    <p>プロジェクト完了数</p>
+                </div>
+                <div class="counter-box">
+                    <h3 class="counter" data-target="3">0</h3>
+                    <p>ビジネス年数</p>
+                </div>
+                <div class="counter-box">
+                    <h3 class="counter" data-target="15">0</h3>
+                    <p>チームメンバー</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>お問い合わせ</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" name="name" placeholder="お名前" required>
+                        <input type="email" name="email" placeholder="メールアドレス" required>
+                        <input type="tel" name="phone" placeholder="電話番号">
+                        <input type="text" name="company" placeholder="会社名">
+                        <textarea name="message" placeholder="お問い合わせ内容" required></textarea>
+                        <button type="submit" class="btn">送信する</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>会社情報</h3>
+                    <p><strong>会社名：</strong>FiExceL株式会社</p>
+                    <p><strong>代表：</strong>向井 優真</p>
+                    <p><strong>所在地：</strong>〒723-0046 広島県三原市明神2-6-10</p>
+                    <p><strong>電話：</strong>080-7413-4844</p>
+                    <p><strong>メール：</strong>info@fiexcel.site</p>
+                    <p><strong>設立：</strong>2022年4月18日</p>
+                    <p><strong>資本金：</strong>800万円</p>
+                    
+                    <div class="map-container">
+                        <!-- Google Map APIを使用する場合はこちらに埋め込みコードを入れる -->
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FiExceL株式会社</h3>
+                    <p>〒723-0046<br>広島県三原市明神2-6-10</p>
+                    <p>TEL: 080-7413-4844</p>
+                    <p>Email: info@fiexcel.site</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="social-icon">f</i></a>
+                        <a href="#" aria-label="Twitter"><i class="social-icon">t</i></a>
+                        <a href="#" aria-label="Instagram"><i class="social-icon">i</i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="social-icon">l</i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="#services">営業代行</a></li>
+                        <li><a href="#services">コンサルティング</a></li>
+                        <li><a href="#services">Webサイト制作</a></li>
+                        <li><a href="#services">コールセンター業務</a></li>
+                        <li><a href="#services">広告代理業</a></li>
+                        <li><a href="#services">商品企画・OEM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="#home">ホーム</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                        <li><a href="#">利用規約</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2022-2025 FiExceL株式会社. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" aria-label="トップに戻る">↑</a>
+    
+    <script>
+        // モバイルメニューの切り替え
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // メニューリンクをクリックしたらモバイルメニューを閉じる
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // スクロール時のヘッダースタイル変更
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const backToTop = document.querySelector('.back-to-top');
+            
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                backToTop.classList.add('show');
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) return;
+                
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // カウンターアニメーション
+        const counterSection = document.querySelector('.counter-section');
+        const counters = document.querySelectorAll('.counter');
+        let counted = false;
+        
+        function animateCounters() {
+            if (counted) return;
+            
+            const sectionTop = counterSection.offsetTop;
+            const sectionHeight = counterSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            
+            if (scrollY > sectionTop - windowHeight + sectionHeight / 2) {
+                counters.forEach(counter => {
+                    const target = +counter.dataset.target;
+                    const increment = target / 100;
+                    
+                    function updateCount() {
+                        const count = +counter.innerText;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + increment);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    }
+                    
+                    updateCount();
+                });
+                
+                counted = true;
+            }
+        }
+        
+        // スクロール時にカウンターアニメーションを開始
+        window.addEventListener('scroll', animateCounters);
+        
+        // お問い合わせフォーム送信処理
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // フォームデータの取得
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // ここでフォームデータをサーバーに送信する処理を記述
+            // 実際にはサーバー側のAPIエンドポイントにPOSTリクエストを送る
+            
+            // 送信成功の表示（実際の実装ではサーバーからのレスポンス後に表示）
+            alert('お問い合わせが送信されました。担当者より連絡いたします。');
+            this.reset();
+        });
+        
+        // Google Mapの初期化（APIキーが必要）
+        function initMap() {
+            // 広島県三原市の座標
+            const miyajiLocation = { lat: 34.4048, lng: 133.0790 };
+            
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: miyajiLocation,
+            });
+            
+            const marker = new google.maps.Marker({
+                position: miyajiLocation,
+                map: map,
+                title: 'FiExceL株式会社'
+            });
+        }
+        
+        // 下記のGoogleマップの初期化は、実際に使用する場合はAPIキーを取得して有効化する
+        // Google Maps APIキーを取得してスクリプトを読み込む場合のコード
+        /*
+        const mapScript = document.createElement('script');
+        mapScript.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
+        mapScript.async = true;
+        mapScript.defer = true;
+        document.body.appendChild(mapScript);
